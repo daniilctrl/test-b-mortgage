@@ -14,11 +14,11 @@ import { databaseSchema } from './schema';
             provide: 'DATABASE',
             useFactory: async (configService: ConfigService): Promise<Database> => {
                 const connection = mysql.createPool({
-                    host: configService.get('HOST'),
-                    port: parseInt(configService.get('PORT') || '3306'),
-                    user: configService.get('USERNAME'),
-                    password: configService.get('PASSWORD') || undefined,
-                    database: configService.get('DATABASE'),
+                    host: configService.get('DB_HOST'),
+                    port: parseInt(configService.get('DB_PORT') || '3306'),
+                    user: configService.get('DB_USER'),
+                    password: configService.get('DB_PASSWORD') || undefined,
+                    database: configService.get('DB_NAME'),
                     timezone: DATABASE_CONSTANTS.DEFAULT_TIMEZONE,
                     dateStrings: true,
                 });
@@ -33,4 +33,4 @@ import { databaseSchema } from './schema';
     ],
     exports: ['DATABASE'],
 })
-export class DatabaseModule { }
+export class DatabaseModule { } 

@@ -8,6 +8,13 @@
       "when": 1753715483944,
       "tag": "0000_wakeful_timeslip",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1779385012191,
+      "tag": "0001_military_excalibur",
+      "breakpoints": true
     }
   ]
 }

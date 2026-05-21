@@ -1,19 +1,22 @@
 import { defineConfig } from 'drizzle-kit';
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({ override: true });
 
 export default defineConfig({
-  schema: './src/database/schema/*',
+  schema: [
+    './src/app/modules/user/schemas/*.ts',
+    './src/app/modules/mortgage-profile/schemas/*.ts'
+  ],
   out: './database/migrations',
   dialect: 'mysql',
   dbCredentials: {
-    host: process.env.HOST || 'localhost',
-    port: parseInt(process.env.PORT || '3306'),
-    user: process.env.USERNAME,
-    password: process.env.PASSWORD || undefined,
-    database: process.env.DATABASE || 'DatabaseName',
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT || '3306'),
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD || undefined,
+    database: process.env.DB_NAME || 'DatabaseName'
   },
   verbose: true,
-  strict: true,
+  strict: true
 });

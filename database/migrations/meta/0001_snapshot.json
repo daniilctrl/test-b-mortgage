@@ -1,0 +1,344 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "id": "00c26539-4ff4-4d1c-9879-a6ed369d8623",
+  "prevId": "a6659020-be58-4bb1-9ee6-bafd388b5935",
+  "tables": {
+    "Users": {
+      "name": "Users",
+      "columns": {
+        "tgId": {
+          "name": "tgId",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "firstName": {
+          "name": "firstName",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "lastName": {
+          "name": "lastName",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "langCode": {
+          "name": "langCode",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "invitedBy": {
+          "name": "invitedBy",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "isActive": {
+          "name": "isActive",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "Users_tgId": {
+          "name": "Users_tgId",
+          "columns": [
+            "tgId"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "MortgageCalculations": {
+      "name": "MortgageCalculations",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "mortgageProfileId": {
+          "name": "mortgageProfileId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "monthlyPayment": {
+          "name": "monthlyPayment",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "totalPayment": {
+          "name": "totalPayment",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "totalOverpaymentAmount": {
+          "name": "totalOverpaymentAmount",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "possibleTaxDeduction": {
+          "name": "possibleTaxDeduction",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "savingsDueMotherCapital": {
+          "name": "savingsDueMotherCapital",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "recommendedIncome": {
+          "name": "recommendedIncome",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "paymentSchedule": {
+          "name": "paymentSchedule",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "MortgageCalculations_userId_Users_tgId_fk": {
+          "name": "MortgageCalculations_userId_Users_tgId_fk",
+          "tableFrom": "MortgageCalculations",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "tgId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "MortgageCalculations_mortgageProfileId_MortgageProfiles_id_fk": {
+          "name": "MortgageCalculations_mortgageProfileId_MortgageProfiles_id_fk",
+          "tableFrom": "MortgageCalculations",
+          "tableTo": "MortgageProfiles",
+          "columnsFrom": [
+            "mortgageProfileId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "MortgageCalculations_id": {
+          "name": "MortgageCalculations_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "MortgageProfiles": {
+      "name": "MortgageProfiles",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "propertyPrice": {
+          "name": "propertyPrice",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "propertyType": {
+          "name": "propertyType",
+          "type": "enum('apartment_in_new_building','apartment_in_secondary_building','house','house_with_land_plot','land_plot','other')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "downPaymentAmount": {
+          "name": "downPaymentAmount",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "matCapitalAmount": {
+          "name": "matCapitalAmount",
+          "type": "decimal(20,2)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "matCapitalIncluded": {
+          "name": "matCapitalIncluded",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "mortgageTermYears": {
+          "name": "mortgageTermYears",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "interestRate": {
+          "name": "interestRate",
+          "type": "decimal(6,3)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "MortgageProfiles_userId_Users_tgId_fk": {
+          "name": "MortgageProfiles_userId_Users_tgId_fk",
+          "tableFrom": "MortgageProfiles",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "tgId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "MortgageProfiles_id": {
+          "name": "MortgageProfiles_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}
