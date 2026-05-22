@@ -42,3 +42,7 @@ npm run dev
 - `userId` источник: берётся из заголовка `x-user-id` (auth в проекте нет).
 - Ключ кэша: sha256 от нормализованного входа (без `userId`), TTL 7 дней.
 - В воркер вынесен весь расчёт, а не только график. Числовые поля и schedule считаются из общих промежуточных значений.
+
+## FigJam
+
+https://www.figma.com/board/5D7BzsINYcOUGtsZWStK7R/Untitled?node-id=0-1&t=OuTjTBhXaMCKNj8Q-1
